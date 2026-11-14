@@ -87,7 +87,7 @@
   .k-block{grid-template-columns:118px minmax(0,1fr);gap:16px;align-items:baseline}
 }
 .k-res{margin:0 18px 0;padding:16px 0 8px;border-top:1px solid rgba(181,44,254,.22)}
-.k-res-h{margin:0 0 12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#c4b5fd;font-weight:700}
+.k-res-h{margin:0 0 12px;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#fff;font-weight:700}
 .k-metrics{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin:0;padding:0;list-style:none}
 .k-metrics li{border-bottom:1px solid rgba(181,44,254,.18);padding:10px 0;min-width:0}
 .k-metrics li:last-child{border-bottom:0}
@@ -159,6 +159,15 @@
 .k-dlg .k-note{margin:0 0 18px;max-width:none}
 .k-dlg p{margin:0 0 .7em;color:#d6d3f5}
 .k-dlg .k-meta{margin-bottom:12px}
+
+/* Что мы делаем: три подраздела в модалке */
+.k-do{display:grid;gap:14px;margin:0 0 8px}
+.k-do-block{margin:0;padding:16px 16px 14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03)}
+.k-do-block h4{margin:0 0 12px;font-size:18px;line-height:1.2;color:#fff;font-family:"Unbounded","Manrope",sans-serif}
+.k-do-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.k-do-list li{position:relative;padding:0 0 0 16px;border-left:2px solid rgba(181,44,254,.45)}
+.k-do-list p{margin:0 0 6px;color:#d6d3f5}
+.k-do-list .k-when,.k-do-list .k-tools{display:block;font-size:14px;color:#c4b5fd}
 .k-stage{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:st}
 .k-stage>li{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03);padding:16px 16px 16px 18px}
 .k-stage>li::before{counter-increment:st;content:"Этап " counter(st);display:block;margin-bottom:6px;font-family:"Unbounded","Manrope",sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--a);font-weight:600}
