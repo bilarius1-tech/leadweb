@@ -7,6 +7,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MARK = re.compile(r"tel:|mailto:|max\.ru|t\.me/|wa\.me|Позвонить Алексею|Позвонить Игорю", re.I)
 ABOUT = ROOT / "o-nas" / "index.html"
+CASES = ROOT / "keysy-ii" / "index.html"
+ALLOWED_CONTACT_PAGES = {ABOUT.resolve(), CASES.resolve()}
 ok = True
 
 def main_span(text):
@@ -21,20 +23,23 @@ for path in sorted(ROOT.rglob("*")):
     hits = list(MARK.finditer(text))
     if not hits:
         continue
-    if path.resolve() != ABOUT.resolve():
+    if path.resolve() not in ALLOWED_CONTACT_PAGES:
         print(f"FAIL {path.relative_to(ROOT)} has {len(hits)} contact markers")
         ok = False
         continue
     a, b = main_span(text)
     outside = [m for m in hits if not (a <= m.start() < b)]
     if outside:
-        print(f"FAIL about has {len(outside)} contact markers outside <main>")
+        print(f"FAIL {path.relative_to(ROOT)} has {len(outside)} contact markers outside <main>")
         ok = False
-    needed = ["tel:+79212013252", "tel:+79238240461", "mailto:bilariuss@yandex.ru", "max.ru", "t.me/bilarius"]
     main = text[a:b]
+    if path.resolve() == ABOUT.resolve():
+        needed = ["tel:+79212013252", "tel:+79238240461", "mailto:bilariuss@yandex.ru", "max.ru", "t.me/bilarius"]
+    else:
+        needed = ["mailto:bilariuss@yandex.ru", "t.me/bilarius"]
     for item in needed:
         if item not in main:
-            print(f"FAIL about main missing {item}")
+            print(f"FAIL {path.relative_to(ROOT)} main missing {item}")
             ok = False
 
 home = (ROOT / "index.html").read_text(encoding="utf-8")
@@ -71,6 +76,6 @@ if not (ROOT / "kontakty" / "index.html").read_text(encoding="utf-8").startswith
     ok = False
 
 if ok:
-    print("ok: contacts only in About main; homepage calls gone; calculator has no send action")
+    print("ok: contacts only in About and cases main; homepage calls gone; calculator has no send action")
     sys.exit(0)
 sys.exit(1)

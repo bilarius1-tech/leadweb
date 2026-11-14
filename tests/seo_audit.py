@@ -7,7 +7,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PREFIX = "https://ztim2008.github.io/leadweb"
+PREFIX = "https://bilarius1-tech.github.io/leadweb"
 
 
 class Doc(HTMLParser):
@@ -167,7 +167,7 @@ def main():
         if url not in locs:
             fail(f"sitemap missing {url}")
     robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
-    if "Sitemap: https://ztim2008.github.io/leadweb/sitemap.xml" not in robots:
+    if "Sitemap: https://bilarius1-tech.github.io/leadweb/sitemap.xml" not in robots:
         fail("robots.txt sitemap")
     if "Disallow: /" in robots:
         fail("robots.txt blocks the site")

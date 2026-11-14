@@ -64,6 +64,7 @@ LOCAL = {
     "/leadweb/sayt-za-0/": ROOT / "sayt-za-0" / "index.html",
     "/leadweb/o-nas/": ROOT / "o-nas" / "index.html",
     "/leadweb/llms.txt": ROOT / "llms.txt",
+    "/leadweb/keysy-ii/": ROOT / "keysy-ii" / "index.html",
     "/leadweb/css/site.css": ROOT / "css" / "site.css",
     "/leadweb/css/service-pages.css": ROOT / "css" / "service-pages.css",
     "/leadweb/js/main.js": ROOT / "js" / "main.js",
@@ -240,7 +241,7 @@ def main():
                 allowed = base in CONTACTS or base in {
                     "https://1c.ru/",
                     "https://www.1c-bitrix.ru/products/cms/",
-                } or "fonts.googleapis.com" in base or "fonts.gstatic.com" in base or "ztim2008.github.io/leadweb/" in base
+                } or "fonts.googleapis.com" in base or "fonts.gstatic.com" in base or "bilarius1-tech.github.io/leadweb/" in base
                 if not allowed:
                     errors += fail(f"{name} unexpected external link {base}")
                 continue
@@ -277,7 +278,7 @@ def main():
             errors += fail(f"{name} JSON-LD: {exc}")
     sm = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
     for url in ("automation.html", "bitrix.html"):
-        if f"https://ztim2008.github.io/leadweb/{url}" not in sm:
+        if f"https://bilarius1-tech.github.io/leadweb/{url}" not in sm:
             errors += fail(f"sitemap missing {url}")
     llms = (ROOT / "llms.txt").read_text(encoding="utf-8")
     for url in ("automation.html", "bitrix.html"):

@@ -1,0 +1,91 @@
+/* Страница типовых сценариев ИИ (/keysy-ii/). Токены как в site.css. */
+
+.keysy-hero h1{max-width:22ch}
+.keysy-hero .mascot{width:min(100%,560px)}
+@media(min-width:900px){
+  .keysy-hero .svc-hero-copy{max-width:50%}
+  .keysy-hero .mascot{width:min(680px,62%)}
+}
+
+.k-note{display:flex;gap:10px;align-items:flex-start;margin:18px 0 0;padding:12px 14px;border-radius:14px;border:1px solid rgba(233,184,255,.45);background:rgba(107,6,227,.22);color:#f5eaff;font-weight:600;max-width:42rem}
+.k-note .ic{color:#e9d5ff;margin-top:2px;flex:none}
+
+.k-filters{margin:0 0 28px}
+.k-filters input[type=radio]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.k-chips{display:flex;flex-wrap:wrap;gap:8px}
+.k-chips label{display:inline-flex;align-items:center;cursor:pointer;text-decoration:none;color:#d9d6ff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;background:rgba(7,5,26,.45);font-weight:600}
+.k-chips label:hover{color:#fff;border-color:rgba(181,44,254,.55)}
+#kf-all:checked ~ .k-chips label[for=kf-all],
+#kf-1c:checked ~ .k-chips label[for=kf-1c],
+#kf-b24:checked ~ .k-chips label[for=kf-b24],
+#kf-both:checked ~ .k-chips label[for=kf-both]{color:#fff;border-color:rgba(181,44,254,.75);background:rgba(107,6,227,.4)}
+#kf-1c:checked ~ .k-grid .k-case:not([data-sys=1c]),
+#kf-b24:checked ~ .k-grid .k-case:not([data-sys=b24]),
+#kf-both:checked ~ .k-grid .k-case:not([data-sys=both]){display:none}
+
+.k-grid{display:grid;gap:22px}
+
+.k-case{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:820px){
+  .k-case{grid-template-columns:minmax(0,1fr) 140px;align-items:start}
+  .k-case .k-mascot{grid-column:2;grid-row:1/3;margin:0;width:140px;justify-self:end}
+  .k-case .k-metrics{grid-column:1/-1}
+}
+.k-case-head{min-width:0}
+.k-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:0 0 8px}
+.k-ind{display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#c4b5fd;margin:0}
+.k-sys{display:inline-block;margin:0;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:#e9d5ff;font-size:12px;letter-spacing:.04em;text-transform:uppercase;vertical-align:1px}
+.k-case h3{font-size:clamp(20px,2.2vw,26px);margin:0 0 .2em}
+.k-block{margin:0}
+.k-block dt{color:#c4b5fd;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px}
+.k-block dd{margin:0;color:#d6d3f5}
+.k-pairs{display:grid;gap:14px}
+@media(min-width:720px){.k-pairs{grid-template-columns:1fr 1fr;gap:18px}}
+.k-mascot{margin:0 auto;width:min(160px,40%);pointer-events:none}
+.k-mascot img{width:100%;height:auto;display:block}
+.k-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
+.k-metrics li{border-left:2px solid var(--a);padding:6px 0 6px 14px;min-width:0}
+.k-metrics b{font-family:"Unbounded","Manrope",sans-serif;font-size:clamp(22px,2.4vw,32px);display:block;line-height:1.15;color:#fff;font-weight:600}
+.k-metrics span{color:var(--im);font-size:14px;display:block;margin-top:4px}
+@media(max-width:800px){.k-metrics{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.k-mascot{width:120px}}
+
+.k-want{margin:4px 0 0;display:inline-flex}
+.k-want a{color:#d8b4fe;font-weight:600;text-decoration:none}
+.k-want a::after{content:" →"}
+.k-want a:hover{color:#fff}
+
+.k-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;list-style:none;margin:0;padding:0;counter-reset:ks}
+.k-steps li{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px}
+.k-steps li::before{counter-increment:ks;content:"0" counter(ks);font-family:"Unbounded","Manrope",sans-serif;color:var(--a);display:block;margin-bottom:10px;font-weight:600}
+.k-steps h3{font-size:18px;margin:0 0 .4em}
+.k-steps p{margin:0;color:var(--im);font-size:15px}
+@media(max-width:800px){.k-steps{grid-template-columns:1fr}}
+
+.k-contacts{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+.k-contacts a{display:inline-flex;align-items:center;gap:8px}
+
+.vaybik-teaser{display:grid;grid-template-columns:132px 1fr;gap:20px;align-items:center;text-decoration:none;color:inherit;margin-top:22px}
+.vaybik-teaser:hover{border-color:rgba(168,85,247,.55);transform:translateY(-2px)}
+.vaybik-teaser .kicker{margin-bottom:8px}
+.vaybik-teaser h3{margin:0 0 .3em}
+.vaybik-teaser p{margin:0;color:var(--im)}
+.vaybik-teaser picture,.vaybik-teaser img{width:100%;height:auto;display:block}
+@media(max-width:560px){
+  .vaybik-teaser{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .vaybik-teaser picture{max-width:160px}
+}
+
+a:focus-visible,button:focus-visible,summary:focus-visible,.k-chips label:focus-within,input[type=radio]:focus-visible + .k-chips label{
+  outline:3px solid #fff;outline-offset:3px
+}
+/* radio is visually hidden; when a radio is focused, highlight its label via :has */
+.k-filters:has(#kf-all:focus-visible) label[for=kf-all],
+.k-filters:has(#kf-1c:focus-visible) label[for=kf-1c],
+.k-filters:has(#kf-b24:focus-visible) label[for=kf-b24],
+.k-filters:has(#kf-both:focus-visible) label[for=kf-both]{outline:3px solid #fff;outline-offset:3px}
+
+@media(prefers-reduced-motion:reduce){
+  .k-case,.vaybik-teaser,.card{transition:none}
+  .vaybik-teaser:hover,.k-case:hover{transform:none}
+}

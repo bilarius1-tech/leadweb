@@ -43,4 +43,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://ztim2008.github.io/leadweb/sitemap.xml
+Sitemap: https://bilarius1-tech.github.io/leadweb/sitemap.xml
