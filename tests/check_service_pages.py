@@ -66,6 +66,7 @@ LOCAL = {
     "/leadweb/o-nas/": ROOT / "o-nas" / "index.html",
     "/leadweb/llms.txt": ROOT / "llms.txt",
     "/leadweb/keysy-ii/": ROOT / "keysy-ii" / "index.html",
+    "/leadweb/kalkulyator/": ROOT / "kalkulyator" / "index.html",
     "/leadweb/css/site.css": ROOT / "css" / "site.css",
     "/leadweb/css/service-pages.css": ROOT / "css" / "service-pages.css",
     "/leadweb/js/main.js": ROOT / "js" / "main.js",

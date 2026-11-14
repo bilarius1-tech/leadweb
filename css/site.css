@@ -248,3 +248,8 @@ a.dir-link{text-decoration:none;color:inherit;display:block;transition:transform
 .vaybik-teaser picture,.vaybik-teaser img{width:100%;height:auto;display:block}
 @media(max-width:560px){.vaybik-teaser{grid-template-columns:1fr;justify-items:center;text-align:center}.vaybik-teaser picture{max-width:160px}}
 @media(prefers-reduced-motion:reduce){.vaybik-teaser:hover{transform:none}}
+/* калькулятор в меню */
+.nav-sub a.sub-hl{color:#fff;background:linear-gradient(135deg,rgba(168,85,247,.32),rgba(99,102,241,.22));border:1px solid rgba(168,85,247,.45);margin:2px 0 4px}
+.nav-sub a.sub-hl::after{content:"новое";margin-left:8px;font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:1px 6px;border-radius:999px;background:#a855f7;color:#fff;vertical-align:1px}
+.menu nav>a.menu-hl{color:#fff;background:linear-gradient(135deg,rgba(168,85,247,.3),rgba(99,102,241,.2));border:1px solid rgba(168,85,247,.45)}
+.calc-more{margin:18px 0 0;text-align:center}.calc-more a{font-weight:700}

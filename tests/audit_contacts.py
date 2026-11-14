@@ -9,7 +9,11 @@ ROOT = Path(__file__).resolve().parents[1]
 MARK = re.compile(r"tel:|mailto:|max\.ru|t\.me/|wa\.me|Позвонить Алексею|Позвонить Игорю", re.I)
 ABOUT = ROOT / "o-nas" / "index.html"
 CASES = ROOT / "keysy-ii" / "index.html"
-ALLOWED_CONTACT_PAGES = {ABOUT.resolve(), CASES.resolve()}
+CALC = ROOT / "kalkulyator" / "index.html"
+ALLOWED_CONTACT_PAGES = {ABOUT.resolve(), CASES.resolve(), CALC.resolve()}
+# Calculator tool scripts (client /kalkulyator/ and unlisted internal /kp/) build the
+# "send request" links and KP contact pages, so they may carry Telegram/email.
+TOOL_DIRS = {(ROOT / "kalkulyator").resolve(), (ROOT / "kp").resolve()}
 CHROME_OK = re.compile(r"mailto:bilariuss@yandex\.ru|t\.me/bilarius", re.I)
 ok = True
 
@@ -54,6 +58,8 @@ for path in sorted(ROOT.rglob("*")):
     if path.suffix not in {".html", ".txt", ".xml", ".js"}:
         continue
     if "studio-preview" in path.name:
+        continue
+    if path.resolve().parent in TOOL_DIRS and path.resolve() != CALC.resolve():
         continue
     text = path.read_text(encoding="utf-8")
     hits = list(MARK.finditer(text))
