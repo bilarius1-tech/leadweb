@@ -35,8 +35,9 @@ if "/leadweb/kp/" in (ROOT / "llms.txt").read_text(encoding="utf-8"):
 for path in ROOT.rglob("*.html"):
     if path.parent.name == "kp":
         continue
-    if re.search(r'href="/leadweb/kp/', path.read_text(encoding="utf-8")):
-        fail(f"{path.relative_to(ROOT)} links to internal /kp/")
+    # footer link to /kp/ is allowed (Алексей asked), but only with rel=nofollow
+    if re.search(r'href="/leadweb/kp/"(?![^>]*rel="nofollow")', path.read_text(encoding="utf-8")):
+        fail(f"{path.relative_to(ROOT)} links to internal /kp/ without nofollow")
 home = (ROOT / "index.html").read_text(encoding="utf-8")
 nav = home.split('<nav class="nav"', 1)[1].split("</nav>", 1)[0]
 mob = home.split('Мобильное меню">', 1)[1].split("</nav>", 1)[0]
