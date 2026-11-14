@@ -1,11 +1,46 @@
-/* Страница типовых сценариев ИИ (/keysy-ii/). Токены как в site.css. */
+/* Страница типовых сценариев (/keysy-ii/). Токены как в site.css. */
 
-.keysy-hero h1{max-width:14ch}
-.k-subtitle{font-family:"Unbounded","Manrope",sans-serif;font-size:clamp(22px,3.2vw,36px);font-weight:600;line-height:1.25;margin:12px 0 0;color:#ecebff;letter-spacing:-.01em}
-.keysy-hero .mascot{width:min(100%,420px)}
+/* Герой: на десктопе две колонки без наложения, кот заметно меньше,
+   первый экран умещается в окно на ширинах 1280–1920. */
+.keysy-hero.hero{min-height:0}
+.keysy-hero h1{max-width:none;font-size:clamp(28px,3.2vw,36px);line-height:1.18;margin:0}
+.k-subtitle{font-family:"Unbounded","Manrope",sans-serif;font-size:clamp(20px,2.8vw,30px);font-weight:600;line-height:1.25;margin:10px 0 0;color:#ecebff;letter-spacing:-.01em}
+.keysy-hero .lead{margin-top:12px}
+.keysy-hero .mascot{width:min(100%,320px);margin:22px auto 0}
 @media(min-width:900px){
-  .keysy-hero .svc-hero-copy{max-width:54%}
-  .keysy-hero .mascot{width:min(520px,48%)}
+  .keysy-hero.hero{min-height:100svh;display:flex;align-items:center;padding:72px 0 28px}
+  .keysy-hero .svc-hero-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.2fr) minmax(200px,.7fr);
+    grid-template-areas:"copy mascot";
+    align-items:center;
+    gap:24px 48px;
+    width:100%;
+    min-height:0;
+  }
+  .keysy-hero .svc-hero-copy{grid-area:copy;max-width:none;align-self:center}
+  .keysy-hero .svc-hero-copy .crumbs{margin-bottom:10px}
+  .keysy-hero .svc-hero-copy .svc-sub{margin-bottom:10px}
+  .keysy-hero .svc-hero-copy .kicker{margin-bottom:8px}
+  .keysy-hero .k-note{margin-top:14px;padding:10px 12px}
+  .keysy-hero .acts{margin-top:20px}
+  .keysy-hero .mascot{grid-area:mascot;justify-self:end;align-self:center;width:min(364px,28vw);max-width:380px;margin:0;z-index:1;pointer-events:none}
+}
+@media(min-width:900px) and (max-height:800px){
+  .keysy-hero.hero{padding:64px 0 20px}
+  .keysy-hero .svc-sub{display:none} /* дублирует крошки, экономит высоту на ноутбуках */
+  .keysy-hero h1{font-size:clamp(26px,3vw,36px)}
+  .keysy-hero .k-subtitle{font-size:clamp(18px,2.2vw,26px);margin-top:8px}
+  .keysy-hero .lead{margin-top:8px;font-size:18px}
+  .keysy-hero .k-note{margin-top:10px;padding:8px 12px;font-size:15px}
+  .keysy-hero .acts{margin-top:16px}
+}
+@media(min-width:1280px) and (max-width:1919px){
+  .keysy-hero .svc-hero-layout{gap:28px 56px}
+  .keysy-hero .mascot{width:min(370px,26vw)}
+}
+@media(min-width:1920px){
+  .keysy-hero .mascot{width:380px}
 }
 
 .k-note{display:flex;gap:10px;align-items:flex-start;margin:18px 0 0;padding:12px 14px;border-radius:14px;border:1px solid rgba(233,184,255,.45);background:rgba(107,6,227,.22);color:#f5eaff;font-weight:600;max-width:42rem}
@@ -26,25 +61,53 @@
 
 .k-grid{display:grid;gap:22px}
 
-.k-case{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:0 0 24px;display:flex;flex-direction:column;gap:16px;overflow:hidden}
-.k-photo{margin:0;aspect-ratio:16/9;overflow:hidden;background:rgba(20,12,50,.55)}
-.k-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.k-body{padding:6px 28px 0;display:flex;flex-direction:column;gap:16px}
+/* Карточка как у донора: фото слева, текст справа; на мобильном фото сверху */
+.k-case{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:0;display:flex;flex-direction:column;overflow:hidden}
+.k-top{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:18px 18px 8px;align-items:start}
+.k-photo{margin:0;border-radius:12px;overflow:hidden;background:rgba(20,12,50,.55);min-width:0}
+.k-photo img{width:100%;height:auto;display:block;vertical-align:middle}
+.k-body{min-width:0;display:flex;flex-direction:column;gap:4px}
+.k-num{margin:0 0 6px;font-family:"Unbounded","Manrope",sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#c4b5fd;font-weight:600}
 .k-case-head{min-width:0}
 .k-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:0 0 8px}
 .k-ind{display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#c4b5fd;margin:0}
 .k-sys{display:inline-block;margin:0;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:#e9d5ff;font-size:12px;letter-spacing:.04em;text-transform:uppercase;vertical-align:1px}
-.k-case h3{font-size:clamp(20px,2.2vw,26px);margin:0 0 .2em}
-.k-block{margin:0}
-.k-block dt{color:#c4b5fd;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px}
+.k-case h3{font-size:clamp(20px,2.2vw,26px);margin:0 0 .15em;line-height:1.22}
+.k-pairs{display:grid;gap:0;margin:14px 0 0}
+.k-block{margin:0;padding:12px 0;border-top:1px solid rgba(181,44,254,.22);display:grid;grid-template-columns:minmax(0,1fr);gap:4px}
+.k-block dt{color:#c4b5fd;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0}
 .k-block dd{margin:0;color:#d6d3f5}
-.k-pairs{display:grid;gap:14px}
-@media(min-width:720px){.k-pairs{grid-template-columns:1fr 1fr;gap:18px}}
-.k-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
-.k-metrics li{border-left:2px solid var(--a);padding:6px 0 6px 14px;min-width:0}
-.k-metrics b{font-family:"Unbounded","Manrope",sans-serif;font-size:clamp(22px,2.4vw,32px);display:block;line-height:1.15;color:#fff;font-weight:600}
+@media(min-width:640px){
+  .k-block{grid-template-columns:118px minmax(0,1fr);gap:16px;align-items:baseline}
+}
+.k-res{margin:0 18px 0;padding:16px 0 8px;border-top:1px solid rgba(181,44,254,.22)}
+.k-res-h{margin:0 0 12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#c4b5fd;font-weight:700}
+.k-metrics{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin:0;padding:0;list-style:none}
+.k-metrics li{border-bottom:1px solid rgba(181,44,254,.18);padding:10px 0;min-width:0}
+.k-metrics li:last-child{border-bottom:0}
+.k-metrics b{font-family:"Unbounded","Manrope",sans-serif;font-size:clamp(20px,2.2vw,28px);display:block;line-height:1.15;color:#fff;font-weight:600}
 .k-metrics span{color:var(--im);font-size:14px;display:block;margin-top:4px}
-@media(max-width:800px){.k-metrics{grid-template-columns:1fr 1fr}}
+@media(min-width:640px){
+  .k-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px}
+  .k-metrics li{border-bottom:0;padding:0}
+}
+@media(min-width:1024px){
+  .k-top{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:24px 28px;padding:24px 24px 10px}
+  .k-res{margin:0 24px;padding:8px 0 4px}
+  .k-metrics{grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+  .k-metrics li{padding:0 16px;border-left:1px solid rgba(181,44,254,.22)}
+  .k-metrics li:first-child{padding-left:0;border-left:0}
+  .k-metrics li:last-child{padding-right:0}
+  .k-metrics b{font-size:22px}
+}
+@media(min-width:1280px){
+  .k-top{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:32px;padding:28px 28px 12px}
+  .k-res{margin:0 28px}
+}
+.k-foot{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;padding:12px 18px 18px}
+@media(min-width:1024px){.k-foot{padding:12px 24px 22px}}
+@media(min-width:1280px){.k-foot{padding:12px 28px 24px}}
+.k-more{cursor:pointer;font-family:inherit;border:0}
 .k-want{margin:0;display:inline-flex}
 .k-want a{color:#d8b4fe;font-weight:600;text-decoration:none}
 .k-want a::after{content:" →"}
@@ -60,6 +123,32 @@
 .k-contacts{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
 .k-contacts a{display:inline-flex;align-items:center;gap:8px}
 
+/* Модальное окно этапов */
+.k-dlg{width:min(920px,calc(100vw - 24px));max-width:920px;max-height:min(90dvh,920px);margin:auto;padding:0;border:1px solid var(--line);border-radius:var(--r);background:#100c28;color:var(--t);box-shadow:0 24px 64px -16px rgba(0,0,0,.65)}
+.k-dlg::backdrop{background:rgba(5,3,16,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.k-dlg-inner{padding:22px 20px 24px;overflow:auto;max-height:min(90dvh,920px);-webkit-overflow-scrolling:touch}
+@media(min-width:720px){.k-dlg-inner{padding:28px 32px 32px}}
+.k-dlg-close{position:sticky;top:0;float:right;width:44px;height:44px;margin:0 0 8px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;font-size:26px;line-height:1;cursor:pointer}
+.k-dlg-kicker{margin:0 0 8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#c4b5fd;font-weight:700}
+.k-dlg h2{font-size:clamp(22px,2.4vw,32px);margin:0 48px 12px 0;line-height:1.2}
+.k-dlg h3{font-size:18px;margin:22px 0 10px}
+.k-dlg .k-note{margin:0 0 18px;max-width:none}
+.k-dlg p{margin:0 0 .7em;color:#d6d3f5}
+.k-dlg .k-meta{margin-bottom:12px}
+.k-stage{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:st}
+.k-stage>li{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03);padding:16px 16px 16px 18px}
+.k-stage>li::before{counter-increment:st;content:"Этап " counter(st);display:block;margin-bottom:6px;font-family:"Unbounded","Manrope",sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--a);font-weight:600}
+.k-stage h4{margin:0 0 8px;font-size:17px}
+.k-stage p{margin:0 0 8px;color:#d6d3f5}
+.k-stage p:last-child{margin:0}
+.k-stage .k-tools,.k-stage .k-when{display:block;font-size:14px;color:#c4b5fd}
+.k-dlg-metrics{display:grid;grid-template-columns:1fr;gap:12px;margin:0;padding:0;list-style:none}
+@media(min-width:640px){.k-dlg-metrics{grid-template-columns:1fr 1fr}}
+.k-dlg-metrics li{border-left:2px solid var(--a);padding:4px 0 4px 14px}
+.k-dlg-metrics b{font-family:"Unbounded","Manrope",sans-serif;font-size:22px;display:block;color:#fff}
+.k-dlg-metrics span{color:var(--im);font-size:14px}
+.k-dlg-cta{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
 .vaybik-teaser{display:grid;grid-template-columns:132px 1fr;gap:20px;align-items:center;text-decoration:none;color:inherit;margin-top:22px}
 .vaybik-teaser:hover{border-color:rgba(168,85,247,.55);transform:translateY(-2px)}
 .vaybik-teaser .kicker{margin-bottom:8px}
@@ -71,16 +160,15 @@
   .vaybik-teaser picture{max-width:160px}
 }
 
-a:focus-visible,button:focus-visible,summary:focus-visible,.k-chips label:focus-within,input[type=radio]:focus-visible + .k-chips label{
+a:focus-visible,button:focus-visible,summary:focus-visible,.k-chips label:focus-within,input[type=radio]:focus-visible + .k-chips label,.k-dlg-close:focus-visible{
   outline:3px solid #fff;outline-offset:3px
 }
-/* radio is visually hidden; when a radio is focused, highlight its label via :has */
 .k-filters:has(#kf-all:focus-visible) label[for=kf-all],
 .k-filters:has(#kf-1c:focus-visible) label[for=kf-1c],
 .k-filters:has(#kf-b24:focus-visible) label[for=kf-b24],
 .k-filters:has(#kf-both:focus-visible) label[for=kf-both]{outline:3px solid #fff;outline-offset:3px}
 
 @media(prefers-reduced-motion:reduce){
-  .k-case,.vaybik-teaser,.card{transition:none}
+  .k-case,.vaybik-teaser,.card,.k-more svg{transition:none}
   .vaybik-teaser:hover,.k-case:hover{transform:none}
 }
