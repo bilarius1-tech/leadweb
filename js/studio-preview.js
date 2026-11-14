@@ -1,4 +1,4 @@
-/* Lead.web studio preview.
+/* vaybik.ru studio preview.
    Original isometric pixel art, rasterized here. No third-party sprites.
    Phaser 3.88.2 (MIT) is loaded separately from js/vendor/phaser.min.js. */
 (function () {

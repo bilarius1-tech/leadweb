@@ -183,7 +183,7 @@ def main():
         errors += fail("studio is not the block after the hero")
     if main.find('id="studio"') > main.find('id="calc-sec"'):
         errors += fail("studio is not before the calculator")
-    if "Lead.web" not in home.split("<h1", 1)[1][:400]:
+    if "vaybik.ru" not in home.split("<h1", 1)[1][:400]:
         errors += fail("homepage h1 changed")
     if home.count('href="/leadweb/automation.html"') < 1 or home.count('href="/leadweb/bitrix.html"') < 1:
         errors += fail("homepage menu or footer missing the new routes")

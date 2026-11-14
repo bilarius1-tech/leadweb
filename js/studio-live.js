@@ -1,4 +1,4 @@
-/* Lead.web studio — isometric room on plain Canvas 2D (no Phaser). */
+/* vaybik.ru studio — isometric room on plain Canvas 2D (no Phaser). */
 (function () {
   "use strict";
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Technical SEO checks for the static Lead.web pages."""
+"""Technical SEO checks for the static vaybik.ru pages."""
 import json
 import re
 import sys

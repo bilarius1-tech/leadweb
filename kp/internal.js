@@ -1,4 +1,4 @@
-/* Lead.web — внутренний режим (/leadweb/kp/): презентация, сбор данных, расчёт с часами, КП/ТЗ/бриф,
+/* vaybik.ru — внутренний режим (/leadweb/kp/): презентация, сбор данных, расчёт с часами, КП/ТЗ/бриф,
    Google Таблица, импорт/экспорт. Общий движок — /leadweb/kalkulyator/calc.js. */
 (function(){
 "use strict";
@@ -25,7 +25,7 @@ function applyEdits(){const fresh=JSON.parse(JSON.stringify(DEF));Object.keys(C)
 applyEdits();
 const E=(p,tag="span",cls="")=>`<${tag} class="${cls}" data-e="${p}">${esc(getP(C,p))}</${tag}>`;
 const short=u=>u.replace(/^https?:\/\//,"").replace(/\/$/,"");
-const sh=(kick,title,body,cls="")=>`<div class="sl ${cls}"><div class="skick">${kick}</div><h2>${title}</h2>${body}<div class="sfoot">Lead.web · сайты, которые приводят заявки</div></div>`;
+const sh=(kick,title,body,cls="")=>`<div class="sl ${cls}"><div class="skick">${kick}</div><h2>${title}</h2>${body}<div class="sfoot">vaybik.ru · сайты, которые приводят заявки</div></div>`;
 function slides(){const s=[];
  s.push(`<div class="sl scover"><div class="skick">${E("deck.kicker")}</div><div class="sh1">${E("deck.brand")}</div><div class="stag">${E("deck.tagline")}</div><div class="sbar"></div></div>`);
  s.push(sh("Знакомство",E("team.title"),`<p class="slead">${E("team.lead")}</p><div class="sg2">${C.team.people.map((p,j)=>`<div class="sc"><div class="spn">${E(`team.people.${j}.n`)}</div><div class="spr">${E(`team.people.${j}.r`)}</div><div class="spy">${E(`team.people.${j}.y`)}</div><p>«${E(`team.people.${j}.q`)}»</p></div>`).join("")}</div>`));
@@ -35,7 +35,7 @@ function slides(){const s=[];
  ["case1","case2"].forEach((k,n)=>s.push(sh("Кейс "+(n+1),E(k+".title"),`<a class="surl" href="${esc(C[k].url)}" target="_blank" rel="noopener">${esc(short(C[k].url))}</a><div class="scase"><div class="sc"><h3>Было</h3><p>${E(k+".was")}</p></div><div class="sc"><h3>Сделали</h3><ul>${C[k].did.map((d,j)=>`<li>${E(`${k}.did.${j}`)}</li>`).join("")}</ul></div><div class="sc dark"><h3>Результат</h3><p>${E(k+".res")}</p></div></div>`)));
  s.push(sh("Кейсы",E("list.title"),`<div class="slist">${C.list.groups.map(([g,a],gi)=>`<div><h3>${esc(g)}</h3><ul>${a.map(([t,u],j)=>`<li>${E(`list.groups.${gi}.1.${j}.0`)} — <a href="${esc(u)}" target="_blank" rel="noopener">${esc(short(u))}</a></li>`).join("")}</ul></div>`).join("")}</div>`,"slong"));
  s.push(sh("Чем мы отличаемся",E("why.title"),`<p class="slead">${E("team.lead")}</p><div class="sg3">${C.why.items.map((p,j)=>`<div class="sc"><div class="snum">0${j+1}</div><h3>${E(`why.items.${j}.0`)}</h3><p>${E(`why.items.${j}.1`)}</p></div>`).join("")}</div>`));
- s.push(`<div class="sl scont"><div class="skick">Контакты</div><h2>${E("contacts.title")}</h2><p class="slead">${E("contacts.lead")}</p><div class="scl"><a href="${C.contacts.tgUrl}" target="_blank" rel="noopener"><small>Telegram</small>${esc(C.contacts.tg)}</a><a href="${C.contacts.tel}"><small>Телефон</small>${esc(C.contacts.phone)}</a><a href="mailto:${C.contacts.mail}"><small>Почта</small>${esc(C.contacts.mail)}</a><a href="${SITE}" target="_blank" rel="noopener"><small>Сайт</small>Lead.web</a></div></div>`);
+ s.push(`<div class="sl scont"><div class="skick">Контакты</div><h2>${E("contacts.title")}</h2><p class="slead">${E("contacts.lead")}</p><div class="scl"><a href="${C.contacts.tgUrl}" target="_blank" rel="noopener"><small>Telegram</small>${esc(C.contacts.tg)}</a><a href="${C.contacts.tel}"><small>Телефон</small>${esc(C.contacts.phone)}</a><a href="mailto:${C.contacts.mail}"><small>Почта</small>${esc(C.contacts.mail)}</a><a href="${SITE}" target="_blank" rel="noopener"><small>Сайт</small>vaybik.ru</a></div></div>`);
  return s}
 let cur=0,editing=false,NS=0,step=1,doc="kp";
 function renderDeck(){const s=slides();NS=s.length;$("deck").innerHTML=s.map((h,j)=>h.replace('class="sl','data-i="'+j+'" class="sl')).join("");$("dots").innerHTML=s.map((_,j)=>`<button type="button" data-j="${j}" aria-label="Слайд ${j+1}"></button>`).join("");setEdit(editing);go(cur)}
@@ -71,7 +71,7 @@ function initCalcExtras(){const S=()=>LW.S;["client","proj","task"].forEach(k=>{
 const BLK=[["team","О команде"],["why","Почему мы"],["case1","Кейс: "+C.case1.title],["case2","Кейс: "+C.case2.title],["list","Более 140 проектов"]];
 function renderDoc(){LW.renderDocs([doc]);document.querySelectorAll(".kp-dtabs button").forEach(b=>{const on=b.dataset.d==doc;b.classList.toggle("on",on);b.setAttribute("aria-selected",on)});
  const k=LW.S.kp;$("stBox").hidden=k.pay!="st";$("kpset").hidden=doc!="kp";$("tzset").hidden=doc!="tz";const c=LW.totals();$("dHint").textContent="Авто: "+LW.autoDays(c)+" раб. дн. ("+r2(c.H)+" ч ÷ "+(k.hpd||6)+" ч/день)";
- document.title=({kp:"КП",tz:"ТЗ",brief:"Бриф"}[doc])+(LW.clientName()?" — "+LW.clientName():"")+" — Lead.web"}
+ document.title=({kp:"КП",tz:"ТЗ",brief:"Бриф"}[doc])+(LW.clientName()?" — "+LW.clientName():"")+" — vaybik.ru"}
 function initDocs(){const k=()=>LW.S.kp;["date","valid","stages","days"].forEach(x=>{$(x).value=k()[x];$(x).oninput=()=>{k()[x]=$(x).value;LW.save();renderDoc()}});
  $("hpd").value=k().hpd;$("hpd").oninput=()=>{k().hpd=+$("hpd").value||6;LW.save();renderDoc()};
  $("pay").value=k().pay;$("pay").onchange=()=>{k().pay=$("pay").value;if(k().pay=="st"&&!String(k().stages).trim()){k().stages="Предоплата; 30\nДизайн / прототип; 30\nРазработка; 30\nЗапуск; 10";$("stages").value=k().stages}LW.save();renderDoc()};
@@ -87,7 +87,7 @@ function shareUrl(d){const base=location.origin+location.pathname,S=LW.S;if(d=="
 function dl(name,s){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+s],{type:"text/plain;charset=utf-8"}));a.download=name;a.click()}
 const CT=()=>`Контакты: Telegram ${D.CONTACTS.tg} (${D.CONTACTS.tgUrl}), ${D.CONTACTS.phone}, ${D.CONTACTS.mail}, ${SITE}\n`;
 function txtKP(){const S=LW.S,L=LW.lines(),c=LW.totals(L),DD="-".repeat(64),pad=(a,n)=>a.length>=n?a:a+" ".repeat(n-a.length),grp=a=>D.GROUPS.map(([g,n])=>[n,a.filter(l=>l.g==g)]).filter(x=>x[1].length);
- let s=`КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ — Lead.web (${SITE})\n${DD}\n`+(LW.clientName()?`Клиент: ${LW.clientName()}\n`:"")+`Проект: ${S.proj||"—"}\nДата: ${fd(S.kp.date)}\n`+(S.kp.valid?`Действительно до: ${fd(S.kp.valid)}\n`:"")+(S.task.trim()?`\nЗадача клиента:\n${S.task.trim()}\n`:"");
+ let s=`КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ — vaybik.ru (${SITE})\n${DD}\n`+(LW.clientName()?`Клиент: ${LW.clientName()}\n`:"")+`Проект: ${S.proj||"—"}\nДата: ${fd(S.kp.date)}\n`+(S.kp.valid?`Действительно до: ${fd(S.kp.valid)}\n`:"")+(S.task.trim()?`\nЗадача клиента:\n${S.task.trim()}\n`:"");
  {const w=LW.wishL();if(S.needs.trim()||w.length)s+=`\nПожелания клиента:\n`+(S.needs.trim()?S.needs.trim()+"\n":"")+w.map(x=>"- "+x+"\n").join("")}
  s+=`\nПлатформа: ${LW.platN()}\nТип сайта: ${LW.typeN()}\n\n${DD}\nСТОИМОСТЬ РАБОТ (ставка ${rub(c.rate)} / час)\n${DD}\n`;
  const row=l=>{const t="- "+l.n+(l.client?` (оплачивает заказчик, ${l.ref})`:"")+(l.est?" (оценим отдельно)":"");return (t.length>45?t+"\n"+" ".repeat(46):pad(t,46))+(l.client||l.est?"—":pad(String(r2(l.h)),7)+rub(l.h*c.rate))+"\n"};
@@ -95,17 +95,17 @@ function txtKP(){const S=LW.S,L=LW.lines(),c=LW.totals(L),DD="-".repeat(64),pad=
  s+=`\n${DD}\nЧасов всего:               ${r2(c.H)}\nПредварительная стоимость: ${rub(c.S)}\nНалог ${c.tax}%:                  ${rub(c.T)}\nИТОГО РАЗОВО:              ${rub(c.I)}\n`;
  const mo=L.filter(l=>l.month);if(mo.length){s+=`\nЕЖЕМЕСЯЧНО\n`;mo.forEach(l=>s+=row(l));s+=`Итого в месяц (с налогом): ${rub(c.Im)}\n`}
  s+=`\n${LW.noteP()}\n\n${DD}\nГРАФИК ОПЛАТЫ\n`;LW.sched().forEach(([t,p])=>s+=`- ${t}: ${p}% — ${rub(c.I*p/100)}\n`);s+=`Ориентировочный срок: ${LW.daysText(c)}\n\n${DD}\n`+CT();return s}
-function txtTZ(){const DD="-".repeat(64);let s=`ТЕХНИЧЕСКОЕ ЗАДАНИЕ — Lead.web (${SITE})\n${DD}\n`;
+function txtTZ(){const DD="-".repeat(64);let s=`ТЕХНИЧЕСКОЕ ЗАДАНИЕ — vaybik.ru (${SITE})\n${DD}\n`;
  LW.tzData().forEach(([t,a,k],i)=>{s+=`\n${i+1}. ${t.toUpperCase()}\n`;if(k=="kv")a.forEach(([x,y])=>s+=`- ${x}: ${y}\n`);else if(k=="struct")a.forEach(([n,r])=>{s+=`${n}:\n`;r.forEach(([x,y],j)=>s+=`  ${j+1}. ${x} — ${y}\n`)});else if(k=="p")a.forEach(x=>s+=x+"\n");else a.forEach((x,j)=>s+=(k=="ol"?(j+1)+". ":"- ")+x+"\n")});
  return s+`\n${DD}\n`+CT()}
-function txtBrief(){const S=LW.S;let s=`БРИФ — Lead.web\n${"-".repeat(64)}\n`;LW.BRIEF.forEach(([k,l])=>{if((S.brief[k]||"").trim())s+=`${l}: ${S.brief[k].trim()}\n`});return s+"\n"+LW.summaryText(location.origin+"/leadweb/kalkulyator/#c="+D.encState(LW.compact(false)))+"\n"}
+function txtBrief(){const S=LW.S;let s=`БРИФ — vaybik.ru\n${"-".repeat(64)}\n`;LW.BRIEF.forEach(([k,l])=>{if((S.brief[k]||"").trim())s+=`${l}: ${S.brief[k].trim()}\n`});return s+"\n"+LW.summaryText(location.origin+"/leadweb/kalkulyator/#c="+D.encState(LW.compact(false)))+"\n"}
 function jdl(name,o){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(o,null,1)],{type:"application/json"}));a.download=name;a.click()}
 function initIO(){let mode="";const f=$("impF"),num=x=>typeof x=="number"&&isFinite(x)&&x>=0;
  $("expS").onclick=()=>{const S=LW.S;jdl("leadweb-settings-"+iso(new Date())+".json",{kind:"leadweb-settings",v:2,rate:S.rate,tax:S.tax,hov:S.hov,custom:S.custom,slideEdits:EDITS})};
  $("expM").onclick=()=>{const S=LW.S;jdl("leadweb-meeting-"+(LW.clientName()||"client").replace(/[^\wа-яё-]+/gi,"_")+"-"+(S.kp.date||"")+".json",{kind:"leadweb-meeting",v:2,state:S})};
  $("impS").onclick=()=>{mode="s";f.value="";f.click()};$("impM").onclick=()=>{mode="m";f.value="";f.click()};
  f.onchange=async()=>{const file=f.files[0];if(!file)return;let o;try{o=JSON.parse(await file.text())}catch(e){alert("Файл не является корректным JSON.");return}
-  try{const S=LW.S;if(mode=="s"){if(o.kind!="leadweb-settings")throw new Error("это не файл настроек Lead-web");
+  try{const S=LW.S;if(mode=="s"){if(o.kind!="leadweb-settings")throw new Error("это не файл настроек vaybik.ru");
     if(o.rate!=null&&!num(o.rate))throw new Error("ставка должна быть числом");if(o.tax!=null&&(!num(o.tax)||o.tax>100))throw new Error("налог 0–100");
     if(o.hov&&(typeof o.hov!="object"||Object.values(o.hov).some(v=>!num(v))))throw new Error("часы по пунктам должны быть числами");
     if(o.custom&&(!Array.isArray(o.custom)||o.custom.some(c=>typeof c!="object"||typeof c.n!="string"||!num(+c.h))))throw new Error("неверные свои строки");
@@ -114,7 +114,7 @@ function initIO(){let mode="";const f=$("impF"),num=x=>typeof x=="number"&&isFin
     if(!confirm("Импортировать настройки?\n"+parts.join(", ")+"\nТекущие значения будут заменены."))return;
     if(o.rate!=null)S.rate=o.rate;if(o.tax!=null)S.tax=o.tax;if(o.hov)S.hov=o.hov;if(o.custom)LW.S=Object.assign(S,{custom:o.custom});
     if(o.slideEdits){EDITS=o.slideEdits;localStorage.setItem("kv_slide_edits",JSON.stringify(EDITS))}LW.save();location.reload()}
-   else{if(o.kind!="leadweb-meeting"||!o.state||typeof o.state!="object")throw new Error("это не файл встречи Lead-web");const st=o.state;
+   else{if(o.kind!="leadweb-meeting"||!o.state||typeof o.state!="object")throw new Error("это не файл встречи vaybik.ru");const st=o.state;
     if(st.sel&&typeof st.sel!="object"||st.custom&&!Array.isArray(st.custom)||st.rate!=null&&!num(st.rate))throw new Error("повреждённые данные встречи");
     if(!confirm("Открыть встречу «"+(st.client||"без клиента")+" — "+(st.proj||"")+"»?\nТекущая встреча в этом браузере будет заменена."))return;
     LW.S=st;LW.save();location.reload()}}

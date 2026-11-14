@@ -1,5 +1,5 @@
-/* Lead.web — калькулятор (/kalkulyator/ и /kp/). Токены из site.css. */
-.lc-hero.hero{min-height:0;padding-top:120px;padding-bottom:20px}
+/* vaybik.ru — калькулятор (/kalkulyator/ и /kp/). Токены из site.css. */
+.lc-hero.hero:not(.hero-mascot){min-height:0;padding-top:120px;padding-bottom:20px}
 .lc-hero .w{width:100%}
 .lc-hero h1{font-size:clamp(30px,4.6vw,56px)}
 .lc-sec.sec{padding-top:12px}
@@ -105,7 +105,7 @@
  .lc-bar-l{font-size:12px;color:var(--im)}.lc-bar b{font-size:15px;flex:1;line-height:1.2}.lc-bar .bt-btn2{padding:9px 14px;font-size:14px}
  .lc-page .ftr{padding-bottom:90px}
 }
-@media(max-width:760px){.lc-tiles-row{grid-template-columns:1fr}.lc-tile{flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 10px;padding:12px 14px}.lc-pages,.lc-form{grid-template-columns:1fr}.lc-box{padding:18px 14px}.lc-acc-p{padding:0 10px 12px}.lc-acc-h button{padding:14px 12px}.lc-hero.hero{padding-top:100px}}
+@media(max-width:760px){.lc-tiles-row{grid-template-columns:1fr}.lc-tile{flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 10px;padding:12px 14px}.lc-pages,.lc-form{grid-template-columns:1fr}.lc-box{padding:18px 14px}.lc-acc-p{padding:0 10px 12px}.lc-acc-h button{padding:14px 12px}.lc-hero.hero:not(.hero-mascot){padding-top:100px}}
 @media(max-width:420px){.lc-crow{grid-template-columns:auto minmax(0,1fr) auto}.lc-crow .lc-tag.est,.lc-crow .lc-hin{grid-column:2}.lc-crow .lc-cd{grid-column:1/-1}.lc-acc-s{display:none}.lc-bar-l{display:none}}
 @media(prefers-reduced-motion:reduce){.lc-tile,.lc-chev{transition:none}.lc-tile:hover{transform:none}}
 

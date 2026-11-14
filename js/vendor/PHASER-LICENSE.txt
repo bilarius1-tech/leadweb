@@ -1,7 +1,7 @@
 Phaser 3.88.2
 Upstream: https://github.com/phaserjs/phaser/releases/tag/v3.88.2
 Local file: js/vendor/phaser.min.js
-Loaded only by studio-preview.html. Other Lead.web pages do not include it.
+Loaded only by studio-preview.html. Other vaybik.ru pages do not include it.
 
 The studio scene, furniture, plants, robot and two characters are original
 pixel art rasterized in js/studio-preview.js. No sprites, logos or textures

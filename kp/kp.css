@@ -1,4 +1,4 @@
-/* Lead.web — внутренний режим /kp/: вкладки, презентация, настройки документов. */
+/* vaybik.ru — внутренний режим /kp/: вкладки, презентация, настройки документов. */
 .kp-page main{padding:96px 0 60px}
 .kp-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-bottom:18px}
 .kp-title{font-size:clamp(20px,2.4vw,28px);margin:0}.kp-title span{font-family:"Manrope",sans-serif;font-size:13px;font-weight:700;color:#c4b5fd;background:rgba(168,85,247,.18);border-radius:999px;padding:3px 10px;vertical-align:middle;margin-left:6px}

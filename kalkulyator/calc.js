@@ -1,4 +1,4 @@
-/* Lead.web — движок калькулятора. Один код для двух режимов:
+/* vaybik.ru — движок калькулятора. Один код для двух режимов:
    body[data-mode="client"]   — /kalkulyator/: цена вилкой, без часов, ставки и налога;
    body[data-mode="internal"] — /kp/: часы, ставка, налог, полные КП/ТЗ (доп. функции — в /kp/internal.js). */
 var LW=(function(){
@@ -131,17 +131,17 @@ function bind(){
 function msg(t){const m=$("lcMsg");if(m){m.textContent=t;clearTimeout(msg._t);msg._t=setTimeout(()=>{if(m.textContent==t)m.textContent=""},6000)}}
 
 /* ===== documents ===== */
-const PF=`<div class="d-foot">Lead.web · Сайты, которые приводят заявки · bilarius1-tech.github.io/leadweb</div>`;
+const PF=`<div class="d-foot">vaybik.ru · Сайты, которые приводят заявки · bilarius1-tech.github.io/leadweb</div>`;
 const sec=(n,kick,title,body,cls="")=>`<section class="d-pg ${cls}"><div class="d-kick"><span>${n}</span>${kick}</div><h2>${title}</h2>${body}${PF}</section>`;
 const grpL=L=>D.GROUPS.map(([g,n])=>[n,L.filter(l=>l.g==g)]).filter(x=>x[1].length);
 const lineTag=l=>(l.client?` <em>— оплачивает заказчик, ${esc(l.ref)}</em>`:"")+(l.month?" <em>— ежемесячно</em>":"")+(l.est?" <em>— оценим отдельно</em>":"");
 function cover(kind,c){const K={kp:["КП",INT?"Коммерческое предложение":"Предварительное коммерческое предложение"],tz:["ТЗ",INT?"Техническое задание":"Предварительное техническое задание"],brief:["БР","Бриф на разработку сайта"]}[kind];
  const cost=INT?`<b class="d-acc">${rub(c.I)}</b>${c.Im?`<br><small>+ ${rub(c.Im)}/мес</small>`:""}`:`<b class="d-acc">${c.I?rangeT(c.I):"—"}</b>${c.Im?`<br><small>+ ${rangeT(c.Im,"/мес")}</small>`:""}`;
- return `<section class="d-pg d-cover"><div class="d-brand">Lead<b>.</b>web</div><div class="d-cmid"><div class="d-kick"><span>${K[0]}</span>${K[1]}</div>
+ return `<section class="d-pg d-cover"><div class="d-brand">vaybik<b>.</b>ru</div><div class="d-cmid"><div class="d-kick"><span>${K[0]}</span>${K[1]}</div>
  <div class="d-h1">${esc(S.proj||"Разработка сайта")}</div>${clientName()?`<div class="d-for">для <b>${esc(clientName())}</b></div>`:""}${taskText()?`<div class="d-task"><small>Задача</small><p>${esc(taskText()).replace(/\n/g,"<br>")}</p></div>`:""}</div>
  <div class="d-cbot"><div><small>Дата</small>${fd(INT?S.kp.date:iso(new Date()))}</div>${kind=="kp"?(INT&&S.kp.valid?`<div><small>Действительно до</small>${fd(S.kp.valid)}</div>`:"")+`<div><small>${INT?"Стоимость":"Ориентир стоимости"}</small>${cost}</div>`:`<div><small>Платформа</small>${esc(platN())}</div><div><small>Тип сайта</small>${esc(typeN())}</div>`}</div>${PF}</section>`}
 function contactsPg(n){const K=D.CONTACTS,T=typeof C!="undefined"?C.contacts:{title:"Обсудим ваш проект?",lead:"Напишите или позвоните — ответим сами"};
- return `<section class="d-pg d-contacts"><div class="d-kick"><span>${n}</span>Контакты</div><h2>${esc(T.title)}</h2><p class="d-lead">${esc(T.lead)}</p><div class="d-cl"><a href="${K.tgUrl}"><small>Telegram</small>${esc(K.tg)}</a><a href="${K.tel}"><small>Телефон</small>${esc(K.phone)}</a><a href="mailto:${K.mail}"><small>Почта</small>${esc(K.mail)}</a><a href="${K.site}"><small>Сайт</small>Lead.web</a></div>${PF}</section>`}
+ return `<section class="d-pg d-contacts"><div class="d-kick"><span>${n}</span>Контакты</div><h2>${esc(T.title)}</h2><p class="d-lead">${esc(T.lead)}</p><div class="d-cl"><a href="${K.tgUrl}"><small>Telegram</small>${esc(K.tg)}</a><a href="${K.tel}"><small>Телефон</small>${esc(K.phone)}</a><a href="mailto:${K.mail}"><small>Почта</small>${esc(K.mail)}</a><a href="${K.site}"><small>Сайт</small>vaybik.ru</a></div>${PF}</section>`}
 function wishL(){return (S.wish||[]).map(x=>String(x).trim()).filter(Boolean)}
 function docKP(){const L=lines(),c=totals(L),b=S.kp.b,o=[];let n=0;const N=()=>String(++n).padStart(2,"0");o.push(cover("kp",c));
  {const w=wishL(),nd=(S.needs||"").trim(),ex=(S.brief.examples||"").trim();if(nd||w.length||(!INT&&(S.brief.goals||ex)))o.push(sec(N(),"Ваша задача","Что вы хотите получить",
@@ -166,7 +166,7 @@ function docKP(){const L=lines(),c=totals(L),b=S.kp.b,o=[];let n=0;const N=()=>S
   if(b.list)o.push(sec(N(),"Кейсы",esc(C.list.title),C.list.groups.map(([g,a])=>`<h3>${esc(g)}</h3><ul class="d-pl">${a.map(([t,u])=>`<li>${esc(t)} — <a href="${esc(u)}">${esc(u.replace(/^https?:\/\//,"").replace(/\/$/,""))}</a></li>`).join("")}</ul>`).join(""),"flow"))}
  o.push(contactsPg(N()));return `<div class="d-doc" id="doc-kp">${o.join("")}</div>`}
 function tzData(){const L=lines(),has=id=>L.some(l=>l.id==id),T=[];
- T.push(["Общие сведения",[["Проект",S.proj||"—"],["Заказчик",clientName()||"—"],["Исполнитель","Команда Lead.web (Алексей и Игорь)"],["Дата",fd(INT?S.kp.date:iso(new Date()))]],"kv"]);
+ T.push(["Общие сведения",[["Проект",S.proj||"—"],["Заказчик",clientName()||"—"],["Исполнитель","Команда vaybik.ru (Алексей и Игорь)"],["Дата",fd(INT?S.kp.date:iso(new Date()))]],"kv"]);
  T.push(["Цели и задачи",[taskText()||"Задача уточняется с заказчиком.","Сайт должен понятно представлять компанию и продукт, вызывать доверие и приводить заявки."],"p"]);
  T.push(["Платформа и тип сайта",[["Платформа",platN()+". "+D.PLAT_D[S.plat]],["Тип сайта",typeN()+". "+D.TYPE_D[S.type]]],"kv"]);
  const bl=L.filter(l=>l.g=="blocks"),st=[];if(bl.length)st.push([S.type=="landing"?"Главная страница (лендинг) — блоки по порядку":"Главная страница — блоки по порядку",bl.map(l=>[l.n,l.d])]);
@@ -204,15 +204,15 @@ function docBrief(){const L=lines(),rows=BRIEF.filter(([k])=>(S.brief[k]||"").tr
  <h3>Выбранная конфигурация</h3><table class="d-t kv"><tbody><tr><td>Тип сайта</td><td>${esc(typeN())}</td></tr><tr><td>Платформа</td><td>${esc(platN())}</td></tr>${pnL().length?`<tr><td>Страницы</td><td>${esc(pnL().join(", "))}</td></tr>`:""}</tbody></table>
  ${grpL(L).map(([g,a])=>`<h4>${g}</h4><ul>${a.map(l=>`<li>${esc(l.n)}${lineTag(l)}${l.custom&&l.d?`<br><small>${esc(l.d)}</small>`:""}</li>`).join("")}</ul>`).join("")}
  <p class="d-note">Ссылка на расчёт: <a href="${esc(linkUrl(false))}">открыть в калькуляторе</a></p>`;
- return `<div class="d-doc" id="doc-brief"><section class="d-pg flow"><div class="d-brand">Lead<b>.</b>web</div><div class="d-kick"><span>БР</span>Бриф на разработку сайта</div><h2>${esc(clientName()||"Новый проект")}</h2><p class="d-date">Дата: ${fd(iso(new Date()))}</p>${body}${PF}</section></div>`}
+ return `<div class="d-doc" id="doc-brief"><section class="d-pg flow"><div class="d-brand">vaybik<b>.</b>ru</div><div class="d-kick"><span>БР</span>Бриф на разработку сайта</div><h2>${esc(clientName()||"Новый проект")}</h2><p class="d-date">Дата: ${fd(iso(new Date()))}</p>${body}${PF}</section></div>`}
 function renderDocs(which){const el=$("lcDocs");if(!el)return;const map={kp:docKP,tz:docTZ,brief:docBrief};el.innerHTML=which.filter(k=>map[k]).map(k=>map[k]()).join("")}
 function printDocs(which){if(!which.length){msg("Отметьте хотя бы один документ.");return}renderDocs(which);document.documentElement.classList.add("lc-printing");
- const t=document.title;document.title=(which.includes("kp")?"КП":which.includes("tz")?"ТЗ":"Бриф")+(clientName()?" — "+clientName():"")+" — Lead.web";
+ const t=document.title;document.title=(which.includes("kp")?"КП":which.includes("tz")?"ТЗ":"Бриф")+(clientName()?" — "+clientName():"")+" — vaybik.ru";
  const done=()=>{document.documentElement.classList.remove("lc-printing");document.title=t;window.removeEventListener("afterprint",done)};window.addEventListener("afterprint",done);setTimeout(()=>{window.print();setTimeout(done,1500)},60)}
 
 /* ===== request summary ===== */
 function summaryText(url){const L=lines(),c=totals(L),b=S.brief,o=[];
- o.push("Здравствуйте! Хочу обсудить сайт. Мой расчёт в калькуляторе Lead.web:");
+ o.push("Здравствуйте! Хочу обсудить сайт. Мой расчёт в калькуляторе vaybik.ru:");
  o.push("• "+(D.TYPES.find(t=>t[0]==S.type)||[])[1]+", "+platN()+(S.type=="multi"?`, ${S.pages+1} стр.`:""));
  o.push("• Разработка: "+(INT?rub(c.I):c.I?rangeT(c.I):"—"));if(c.Im)o.push("• Ежемесячно: "+(INT?rub(c.Im)+"/мес":rangeT(c.Im,"/мес")));
  o.push("• Пунктов: "+L.filter(l=>!l.custom).length+(c.est?`, доп.: ${L.filter(l=>l.est).map(l=>l.n).join("; ")}`:""));
