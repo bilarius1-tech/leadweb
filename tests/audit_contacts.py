@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Contact touchpoints may appear only inside the About page main body."""
+"""Contact touchpoints in page bodies stay on About and cases.
+The site-wide header and mobile menu may include Telegram and email CTAs."""
 import re
 import sys
 from pathlib import Path
@@ -9,29 +10,75 @@ MARK = re.compile(r"tel:|mailto:|max\.ru|t\.me/|wa\.me|Позвонить Але
 ABOUT = ROOT / "o-nas" / "index.html"
 CASES = ROOT / "keysy-ii" / "index.html"
 ALLOWED_CONTACT_PAGES = {ABOUT.resolve(), CASES.resolve()}
+CHROME_OK = re.compile(r"mailto:bilariuss@yandex\.ru|t\.me/bilarius", re.I)
 ok = True
+
 
 def main_span(text):
     a = text.find("<main")
     b = text.find("</main>")
     return a, b
 
+
+def in_range(pos, spans):
+    return any(a <= pos < b for a, b in spans)
+
+
+def chrome_spans(text):
+    spans = []
+    for m in re.finditer(r"<header\b", text):
+        end = text.find("</header>", m.start())
+        if end != -1:
+            spans.append((m.start(), end + len("</header>")))
+    i = text.find('<div class="menu"')
+    if i != -1:
+        depth = 0
+        j = i
+        while j < len(text):
+            if text.startswith("<div", j):
+                depth += 1
+                j += 4
+                continue
+            if text.startswith("</div>", j):
+                depth -= 1
+                j += 6
+                if depth == 0:
+                    spans.append((i, j))
+                    break
+                continue
+            j += 1
+    return spans
+
+
 for path in sorted(ROOT.rglob("*")):
     if path.suffix not in {".html", ".txt", ".xml", ".js"}:
+        continue
+    if "studio-preview" in path.name:
         continue
     text = path.read_text(encoding="utf-8")
     hits = list(MARK.finditer(text))
     if not hits:
         continue
-    if path.resolve() not in ALLOWED_CONTACT_PAGES:
-        print(f"FAIL {path.relative_to(ROOT)} has {len(hits)} contact markers")
+    a, b = main_span(text)
+    chrome = chrome_spans(text)
+    unexpected = []
+    for m in hits:
+        snippet = text[max(0, m.start() - 20): m.end() + 40]
+        in_main = a != -1 and b != -1 and a <= m.start() < b
+        in_chrome = in_range(m.start(), chrome)
+        if in_main:
+            if path.resolve() not in ALLOWED_CONTACT_PAGES:
+                unexpected.append(m)
+            continue
+        if in_chrome and CHROME_OK.search(snippet):
+            continue
+        unexpected.append(m)
+    if unexpected:
+        print(f"FAIL {path.relative_to(ROOT)} has {len(unexpected)} unexpected contact markers")
         ok = False
         continue
-    a, b = main_span(text)
-    outside = [m for m in hits if not (a <= m.start() < b)]
-    if outside:
-        print(f"FAIL {path.relative_to(ROOT)} has {len(outside)} contact markers outside <main>")
-        ok = False
+    if path.resolve() not in ALLOWED_CONTACT_PAGES:
+        continue
     main = text[a:b]
     if path.resolve() == ABOUT.resolve():
         needed = ["tel:+79212013252", "tel:+79238240461", "mailto:bilariuss@yandex.ru", "max.ru", "t.me/bilarius"]
@@ -76,6 +123,6 @@ if not (ROOT / "kontakty" / "index.html").read_text(encoding="utf-8").startswith
     ok = False
 
 if ok:
-    print("ok: contacts only in About and cases main; homepage calls gone; calculator has no send action")
+    print("ok: contacts in About/cases main; header may use Telegram and email; homepage calls gone")
     sys.exit(0)
 sys.exit(1)

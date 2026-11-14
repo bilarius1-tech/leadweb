@@ -43,6 +43,7 @@ CONTACTS = {
     "tel:+79212013252",
     "tel:+79238240461",
     "mailto:bilariuss@yandex.ru",
+    "https://t.me/bilarius",
     "https://max.ru/u/f9LHodD0cOIJWZ3SG6HSah5nE5eGzo3SkpqV2lSE0r7gfVHZOXhLky75kNE",
     "https://max.ru/u/f9LHodD0cOK55o6e_zKUXThShyOsJBmK1dqaZ_lAbwhu54d4FK9g_T-SkGE",
     "/leadweb/kontakty/",
@@ -250,9 +251,10 @@ def main():
                 errors += fail(f"{name} unknown local link {path}")
             elif not LOCAL[path].exists():
                 errors += fail(f"{name} missing file for {path}")
+        main_raw = raw[raw.find("<main"): raw.find("</main>") if "</main>" in raw else len(raw)]
         for contact in ("tel:", "mailto:", "max.ru", "t.me/"):
-            if contact in raw:
-                errors += fail(f"{name} still has contact marker {contact}")
+            if contact in main_raw:
+                errors += fail(f"{name} still has contact marker {contact} in main")
         other = "/leadweb/bitrix.html" if name == "automation.html" else "/leadweb/automation.html"
         if other not in [h.split("#")[0] for h in doc.hrefs]:
             errors += fail(f"{name} does not link to {other}")

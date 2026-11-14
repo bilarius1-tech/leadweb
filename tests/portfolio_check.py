@@ -8,6 +8,29 @@ home = (ROOT / "index.html").read_text(encoding="utf-8")
 port = (ROOT / "portfolio" / "index.html").read_text(encoding="utf-8")
 errors = 0
 
+def without_chrome(html):
+    import re
+    html = re.sub(r"<header\b[\s\S]*?</header>", "", html, count=1)
+    i = html.find('<div class="menu"')
+    if i != -1:
+        depth = 0
+        j = i
+        while j < len(html):
+            if html.startswith("<div", j):
+                depth += 1
+                j += 4
+                continue
+            if html.startswith("</div>", j):
+                depth -= 1
+                j += 6
+                if depth == 0:
+                    html = html[:i] + html[j:]
+                    break
+                continue
+            j += 1
+    return html
+
+
 def fail(msg):
     global errors
     errors += 1
@@ -19,7 +42,8 @@ for label, block_name in (("desktop", '<nav class="nav"'), ("mobile", "Моби�
     block = home.split(block_name, 1)[1].split("</nav>", 1)[0]
     if 'href="/leadweb/portfolio/"' not in block:
         fail(f"homepage {label} menu missing portfolio")
-if "tel:" in home or "mailto:" in home or "Позвонить Алексею" in home:
+body_home = without_chrome(home)
+if "tel:" in body_home or "mailto:" in body_home or "Позвонить Алексею" in body_home:
     fail("homepage contact action returned")
 
 for needle in (
@@ -38,7 +62,8 @@ for needle in (
 ):
     if needle not in port:
         fail(f"portfolio missing {needle}")
-if "tel:" in port or "mailto:" in port or "max.ru" in port:
+body_port = without_chrome(port)
+if "tel:" in body_port or "mailto:" in body_port or "max.ru" in body_port:
     fail("portfolio has a contact action")
 for name in (
     "case-dnk.jpg",
