@@ -81,7 +81,10 @@ def main():
     titles = {}
     descs = {}
     indexable = []
+    skip_parts = {".git", "dist", "node_modules", "backup"}
     for path in sorted(ROOT.rglob("*.html")):
+        if any(part in skip_parts for part in path.relative_to(ROOT).parts):
+            continue
         rel = str(path.relative_to(ROOT))
         raw = path.read_text(encoding="utf-8")
         doc = Doc()
@@ -169,8 +172,11 @@ def main():
     robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
     if "Sitemap: https://vaybik.ru/sitemap.xml" not in robots:
         fail("robots.txt sitemap")
-    if "Disallow: /" in robots:
+    # Блокировка всего сайта — строка ровно "Disallow: /", не "/admin/" и т.п.
+    if re.search(r"(?m)^Disallow:\s*/\s*$", robots):
         fail("robots.txt blocks the site")
+    if "Disallow: /admin/" not in robots:
+        fail("robots.txt must Disallow /admin/")
 
     if errors:
         print(f"{errors} failed")
