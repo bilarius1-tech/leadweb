@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Переезд на vaybik.ru</title>
+<meta name="robots" content="noindex,follow">
+<script>
+(function () {
+  var path = location.pathname || "/";
+  if (path.indexOf("/leadweb/") === 0) path = path.slice("/leadweb".length) || "/";
+  else if (path === "/leadweb") path = "/";
+  var map = {"/automation.html": "/avtomatizaciya-1c/", "/bitrix.html": "/bitrix/", "/kontakty": "/o-nas/", "/kontakty/": "/o-nas/"};
+  if (map[path]) path = map[path];
+  var target = "https://vaybik.ru" + path + (location.search || "") + (location.hash || "");
+  var link = document.createElement("link");
+  link.rel = "canonical";
+  link.href = target;
+  document.head.appendChild(link);
+  location.replace(target);
+})();
+</script>
+</head>
+<body>
+<p>Сайт переехал на <a href="https://vaybik.ru/">https://vaybik.ru/</a></p>
+</body>
+</html>
