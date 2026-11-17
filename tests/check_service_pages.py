@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = {
-    "automation.html": {
+    "avtomatizaciya-1c/": {
         "h1": "Меньше ручной работы.",
         "cta": ["Как проходит работа", "Пять шагов"],
         "phrases": [
@@ -24,7 +24,7 @@ PAGES = {
             "Подписываем NDA",
         ],
     },
-    "bitrix.html": {
+    "bitrix/": {
         "h1": "Сайт на 1С-Битрикс",
         "cta": ["Как проходит работа", "Пять шагов"],
         "phrases": [
@@ -46,46 +46,51 @@ CONTACTS = {
     "https://t.me/bilarius",
     "https://max.ru/u/f9LHodD0cOIJWZ3SG6HSah5nE5eGzo3SkpqV2lSE0r7gfVHZOXhLky75kNE",
     "https://max.ru/u/f9LHodD0cOK55o6e_zKUXThShyOsJBmK1dqaZ_lAbwhu54d4FK9g_T-SkGE",
-    "/leadweb/kontakty/",
+    "/kontakty/",
 }
 LOCAL = {
-    "/leadweb/": ROOT / "index.html",
-    "/leadweb/automation.html": ROOT / "automation.html",
-    "/leadweb/bitrix.html": ROOT / "bitrix.html",
-    "/leadweb/kontakty/": ROOT / "kontakty" / "index.html",
-    "/leadweb/avtomatizaciya/": ROOT / "avtomatizaciya" / "index.html",
-    "/leadweb/uslugi/": ROOT / "uslugi" / "index.html",
-    "/leadweb/uslugi/landing/": ROOT / "uslugi" / "landing" / "index.html",
-    "/leadweb/uslugi/mnogostranichnyj-sajt/": ROOT / "uslugi" / "mnogostranichnyj-sajt" / "index.html",
-    "/leadweb/uslugi/internet-magazin/": ROOT / "uslugi" / "internet-magazin" / "index.html",
-    "/leadweb/uslugi/dizajn/": ROOT / "uslugi" / "dizajn" / "index.html",
-    "/leadweb/uslugi/seo-i-reklama/": ROOT / "uslugi" / "seo-i-reklama" / "index.html",
-    "/leadweb/uslugi/kalkulyatory-i-integracii/": ROOT / "uslugi" / "kalkulyatory-i-integracii" / "index.html",
-    "/leadweb/portfolio/": ROOT / "portfolio" / "index.html",
-    "/leadweb/sayt-za-0/": ROOT / "sayt-za-0" / "index.html",
-    "/leadweb/o-nas/": ROOT / "o-nas" / "index.html",
-    "/leadweb/llms.txt": ROOT / "llms.txt",
-    "/leadweb/keysy-ii/": ROOT / "keysy-ii" / "index.html",
-    "/leadweb/kalkulyator/": ROOT / "kalkulyator" / "index.html",
-    "/leadweb/kp/": ROOT / "kp" / "index.html",
-    "/leadweb/css/site.css": ROOT / "css" / "site.css",
-    "/leadweb/css/service-pages.css": ROOT / "css" / "service-pages.css",
-    "/leadweb/js/main.js": ROOT / "js" / "main.js",
-    "/leadweb/js/magic-rings.js": ROOT / "js" / "magic-rings.js",
-    "/leadweb/js/gradient-blinds.js": ROOT / "js" / "gradient-blinds.js",
-    "/leadweb/img/favicon.svg": ROOT / "img" / "favicon.svg",
-    "/leadweb/img/og.jpg": ROOT / "img" / "og.jpg",
-    "/leadweb/img/og-avto.jpg": ROOT / "img" / "og-avto.jpg",
-    "/leadweb/img/logo-1c.png": ROOT / "img" / "logo-1c.png",
-    "/leadweb/img/logo-1c-bitrix.svg": ROOT / "img" / "logo-1c-bitrix.svg",
-    "/leadweb/img/mascot-automation.jpg": ROOT / "img" / "mascot-automation.jpg",
-    "/leadweb/img/mascot-automation-640.webp": ROOT / "img" / "mascot-automation-640.webp",
-    "/leadweb/img/mascot-automation-960.webp": ROOT / "img" / "mascot-automation-960.webp",
-    "/leadweb/img/mascot-automation-1280.webp": ROOT / "img" / "mascot-automation-1280.webp",
-    "/leadweb/img/mascot-bitrix.jpg": ROOT / "img" / "mascot-bitrix.jpg",
-    "/leadweb/img/mascot-bitrix-640.webp": ROOT / "img" / "mascot-bitrix-640.webp",
-    "/leadweb/img/mascot-bitrix-960.webp": ROOT / "img" / "mascot-bitrix-960.webp",
-    "/leadweb/img/mascot-bitrix-1280.webp": ROOT / "img" / "mascot-bitrix-1280.webp",
+    "/": ROOT / "index.html",
+    "/avtomatizaciya-1c/": ROOT / "avtomatizaciya-1c" / "index.html",
+    "/bitrix/": ROOT / "bitrix" / "index.html",
+    "/kontakty/": ROOT / "kontakty" / "index.html",
+    "/avtomatizaciya/": ROOT / "avtomatizaciya" / "index.html",
+    "/uslugi/": ROOT / "uslugi" / "index.html",
+    "/uslugi/landing/": ROOT / "uslugi" / "landing" / "index.html",
+    "/uslugi/mnogostranichnyj-sajt/": ROOT / "uslugi" / "mnogostranichnyj-sajt" / "index.html",
+    "/uslugi/internet-magazin/": ROOT / "uslugi" / "internet-magazin" / "index.html",
+    "/uslugi/dizajn/": ROOT / "uslugi" / "dizajn" / "index.html",
+    "/uslugi/seo-i-reklama/": ROOT / "uslugi" / "seo-i-reklama" / "index.html",
+    "/uslugi/kalkulyatory-i-integracii/": ROOT / "uslugi" / "kalkulyatory-i-integracii" / "index.html",
+    "/portfolio/": ROOT / "portfolio" / "index.html",
+    "/sayt-za-0/": ROOT / "sayt-za-0" / "index.html",
+    "/o-nas/": ROOT / "o-nas" / "index.html",
+    "/llms.txt": ROOT / "llms.txt",
+    "/keysy-ii/": ROOT / "keysy-ii" / "index.html",
+    "/kalkulyator/": ROOT / "kalkulyator" / "index.html",
+    "/kp/": ROOT / "kp" / "index.html",
+    "/css/fonts.css": ROOT / "css" / "fonts.css",
+    "/css/site.css": ROOT / "css" / "site.css",
+    "/js/metrika.js": ROOT / "js" / "metrika.js",
+    "/css/service-pages.css": ROOT / "css" / "service-pages.css",
+    "/js/main.js": ROOT / "js" / "main.js",
+    "/js/magic-rings.js": ROOT / "js" / "magic-rings.js",
+    "/js/gradient-blinds.js": ROOT / "js" / "gradient-blinds.js",
+    
+    "/fonts/manrope-cyrillic-400-normal.woff2": ROOT / "fonts" / "manrope-cyrillic-400-normal.woff2",
+    "/fonts/unbounded-cyrillic-500-normal.woff2": ROOT / "fonts" / "unbounded-cyrillic-500-normal.woff2",
+    "/img/favicon.svg": ROOT / "img" / "favicon.svg",
+    "/img/og.jpg": ROOT / "img" / "og.jpg",
+    "/img/og-avto.jpg": ROOT / "img" / "og-avto.jpg",
+    "/img/logo-1c.png": ROOT / "img" / "logo-1c.png",
+    "/img/logo-1c-bitrix.svg": ROOT / "img" / "logo-1c-bitrix.svg",
+    "/img/mascot-automation.jpg": ROOT / "img" / "mascot-automation.jpg",
+    "/img/mascot-automation-640.webp": ROOT / "img" / "mascot-automation-640.webp",
+    "/img/mascot-automation-960.webp": ROOT / "img" / "mascot-automation-960.webp",
+    "/img/mascot-automation-1280.webp": ROOT / "img" / "mascot-automation-1280.webp",
+    "/img/mascot-bitrix.jpg": ROOT / "img" / "mascot-bitrix.jpg",
+    "/img/mascot-bitrix-640.webp": ROOT / "img" / "mascot-bitrix-640.webp",
+    "/img/mascot-bitrix-960.webp": ROOT / "img" / "mascot-bitrix-960.webp",
+    "/img/mascot-bitrix-1280.webp": ROOT / "img" / "mascot-bitrix-1280.webp",
 }
 FORBIDDEN = [
     r"Cursor",
@@ -185,10 +190,10 @@ def main():
         errors += fail("studio is not before the calculator")
     if "vaybik.ru" not in home.split("<h1", 1)[1][:400]:
         errors += fail("homepage h1 changed")
-    if home.count('href="/leadweb/automation.html"') < 1 or home.count('href="/leadweb/bitrix.html"') < 1:
+    if home.count('href="/avtomatizaciya-1c/"') < 1 or home.count('href="/bitrix/"') < 1:
         errors += fail("homepage menu or footer missing the new routes")
     for name, spec in PAGES.items():
-        raw = (ROOT / name).read_text(encoding="utf-8")
+        raw = (ROOT / name / "index.html").read_text(encoding="utf-8") if name.endswith("/") else (ROOT / name).read_text(encoding="utf-8")
         doc = Doc()
         doc.feed(raw)
         text = " ".join(doc.text)
@@ -228,7 +233,7 @@ def main():
         for pat in FORBIDDEN:
             if re.search(pat, text, re.I):
                 errors += fail(f"{name} forbidden pattern {pat}")
-        if name == "bitrix.html":
+        if name == "bitrix/":
             for m in re.finditer(r".{0,12}Битрикс24", text):
                 if "не Битрикс24" not in m.group(0) and "не Битрикс24" not in text[max(0, m.start() - 20):m.end()]:
                     errors += fail(f"Bitrix24 mention without negation: {m.group(0)!r}")
@@ -244,7 +249,7 @@ def main():
                 allowed = base in CONTACTS or base in {
                     "https://1c.ru/",
                     "https://www.1c-bitrix.ru/products/cms/",
-                } or "fonts.googleapis.com" in base or "fonts.gstatic.com" in base or "bilarius1-tech.github.io/leadweb/" in base
+                } or base.startswith("https://mc.yandex.ru/")
                 if not allowed:
                     errors += fail(f"{name} unexpected external link {base}")
                 continue
@@ -257,7 +262,7 @@ def main():
         for contact in ("tel:", "mailto:", "max.ru", "t.me/"):
             if contact in main_raw:
                 errors += fail(f"{name} still has contact marker {contact} in main")
-        other = "/leadweb/bitrix.html" if name == "automation.html" else "/leadweb/automation.html"
+        other = "/bitrix/" if name == "avtomatizaciya-1c/" else "/avtomatizaciya-1c/"
         if other not in [h.split("#")[0] for h in doc.hrefs]:
             errors += fail(f"{name} does not link to {other}")
         imgs = [i for i in doc.imgs]
@@ -266,26 +271,26 @@ def main():
             errors += fail(f"{name} mascot alt count {alts.count('вымышленный')}")
         if "Это не сотрудник" not in alts:
             errors += fail(f"{name} mascot alt does not say it is not an employee")
-        if name == "automation.html" and "Товарный знак «1С»" not in alts:
+        if name == "avtomatizaciya-1c/" and "Товарный знак «1С»" not in alts:
             errors += fail("automation page missing 1C logo alt")
-        if name == "bitrix.html" and "Товарный знак «1С-Битрикс»" not in alts:
+        if name == "bitrix/" and "Товарный знак «1С-Битрикс»" not in alts:
             errors += fail("bitrix page missing Bitrix logo alt")
         if "франчайзи" in text and "не франчайзи" not in text:
             errors += fail(f"{name} franchise claim")
         if re.search(r"(?<!не )партн[её]р", text, re.I):
             errors += fail(f"{name} partnership claim")
-        if "/leadweb/" not in [h.split("#")[0] for h in doc.hrefs]:
+        if "/" not in [h.split("#")[0] for h in doc.hrefs]:
             errors += fail(f"{name} does not link home")
         try:
             json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', raw).group(1))
         except Exception as exc:
             errors += fail(f"{name} JSON-LD: {exc}")
     sm = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
-    for url in ("automation.html", "bitrix.html"):
-        if f"https://bilarius1-tech.github.io/leadweb/{url}" not in sm:
+    for url in ("avtomatizaciya-1c/", "bitrix/"):
+        if f"https://vaybik.ru/{url}" not in sm:
             errors += fail(f"sitemap missing {url}")
     llms = (ROOT / "llms.txt").read_text(encoding="utf-8")
-    for url in ("automation.html", "bitrix.html"):
+    for url in ("avtomatizaciya-1c/", "bitrix/"):
         if url not in llms:
             errors += fail(f"llms.txt missing {url}")
     css = (ROOT / "css" / "service-pages.css").read_text(encoding="utf-8")

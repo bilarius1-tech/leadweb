@@ -40,7 +40,7 @@ if 'id="cases"' in home or "case-dkbani" in home or "Все проекты" in h
     fail("homepage still has the work showcase")
 for label, block_name in (("desktop", '<nav class="nav"'), ("mobile", "Мобильное меню")):
     block = home.split(block_name, 1)[1].split("</nav>", 1)[0]
-    if 'href="/leadweb/portfolio/"' not in block:
+    if 'href="/portfolio/"' not in block:
         fail(f"homepage {label} menu missing portfolio")
 body_home = without_chrome(home)
 if "tel:" in body_home or "mailto:" in body_home or "Позвонить Алексею" in body_home:

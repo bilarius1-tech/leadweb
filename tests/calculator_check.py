@@ -21,27 +21,27 @@ for bad in ("ставк", "Ставк", "налог", "Налог", "Часов"
         fail(f"client calculator exposes {bad!r}")
 if 'data-mode="client"' not in client:
     fail("client page is not in client mode")
-for need in ("/leadweb/kalkulyator/data.js", "/leadweb/kalkulyator/calc.js", "t.me/bilarius", "mailto:bilariuss@yandex.ru", 'id="lcBrief"', 'id="lcPdf"'):
+for need in ("/kalkulyator/data.js", "/kalkulyator/calc.js", "t.me/bilarius", "mailto:bilariuss@yandex.ru", 'id="lcBrief"', 'id="lcPdf"'):
     if need not in client:
         fail(f"client calculator missing {need}")
 if 'content="noindex,nofollow' not in internal:
     fail("internal /kp/ is not noindex,nofollow")
-if 'data-mode="internal"' not in internal or "/leadweb/kalkulyator/calc.js" not in internal:
+if 'data-mode="internal"' not in internal or "/kalkulyator/calc.js" not in internal:
     fail("internal /kp/ does not use the shared engine")
-if "/leadweb/kp/" in (ROOT / "sitemap.xml").read_text(encoding="utf-8"):
+if "/kp/" in (ROOT / "sitemap.xml").read_text(encoding="utf-8"):
     fail("sitemap lists internal /kp/")
-if "/leadweb/kp/" in (ROOT / "llms.txt").read_text(encoding="utf-8"):
+if "/kp/" in (ROOT / "llms.txt").read_text(encoding="utf-8"):
     fail("llms.txt lists internal /kp/")
 for path in ROOT.rglob("*.html"):
     if path.parent.name == "kp":
         continue
     # footer link to /kp/ is allowed (Алексей asked), but only with rel=nofollow
-    if re.search(r'href="/leadweb/kp/"(?![^>]*rel="nofollow")', path.read_text(encoding="utf-8")):
+    if re.search(r'href="/kp/"(?![^>]*rel="nofollow")', path.read_text(encoding="utf-8")):
         fail(f"{path.relative_to(ROOT)} links to internal /kp/ without nofollow")
 home = (ROOT / "index.html").read_text(encoding="utf-8")
 nav = home.split('<nav class="nav"', 1)[1].split("</nav>", 1)[0]
 mob = home.split('Мобильное меню">', 1)[1].split("</nav>", 1)[0]
-if "/leadweb/kalkulyator/" not in nav or "/leadweb/kalkulyator/" not in mob:
+if "/kalkulyator/" not in nav or "/kalkulyator/" not in mob:
     fail("menu does not link the calculator")
 data = (ROOT / "kalkulyator" / "data.js").read_text(encoding="utf-8")
 if 'g:"host"' not in data or "Домен, хостинг и сервер" not in data:

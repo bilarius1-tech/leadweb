@@ -131,7 +131,7 @@ function bind(){
 function msg(t){const m=$("lcMsg");if(m){m.textContent=t;clearTimeout(msg._t);msg._t=setTimeout(()=>{if(m.textContent==t)m.textContent=""},6000)}}
 
 /* ===== documents ===== */
-const PF=`<div class="d-foot">vaybik.ru · Сайты, которые приводят заявки · bilarius1-tech.github.io/leadweb</div>`;
+const PF=`<div class="d-foot">vaybik.ru · Сайты, которые приводят заявки · vaybik.ru</div>`;
 const sec=(n,kick,title,body,cls="")=>`<section class="d-pg ${cls}"><div class="d-kick"><span>${n}</span>${kick}</div><h2>${title}</h2>${body}${PF}</section>`;
 const grpL=L=>D.GROUPS.map(([g,n])=>[n,L.filter(l=>l.g==g)]).filter(x=>x[1].length);
 const lineTag=l=>(l.client?` <em>— оплачивает заказчик, ${esc(l.ref)}</em>`:"")+(l.month?" <em>— ежемесячно</em>":"")+(l.est?" <em>— оценим отдельно</em>":"");

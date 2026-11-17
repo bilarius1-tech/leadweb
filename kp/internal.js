@@ -1,5 +1,5 @@
-/* vaybik.ru — внутренний режим (/leadweb/kp/): презентация, сбор данных, расчёт с часами, КП/ТЗ/бриф,
-   Google Таблица, импорт/экспорт. Общий движок — /leadweb/kalkulyator/calc.js. */
+/* vaybik.ru — внутренний режим (/kp/): презентация, сбор данных, расчёт с часами, КП/ТЗ/бриф,
+   Google Таблица, импорт/экспорт. Общий движок — /kalkulyator/calc.js. */
 (function(){
 "use strict";
 const {$,esc,r2,rub,fd,iso,D}=LW;
@@ -80,7 +80,7 @@ function initDocs(){const k=()=>LW.S.kp;["date","valid","stages","days"].forEach
  $("risks").value=LW.S.risks||"";$("risks").oninput=()=>{LW.S.risks=$("risks").value;LW.save();renderDoc()};
  $("pdf").onclick=()=>LW.printDocs([doc]);$("txt").onclick=()=>dl((doc=="kp"?"kp-":doc=="tz"?"tz-":"brief-")+(k().date||"")+".txt",doc=="kp"?txtKP():doc=="tz"?txtTZ():txtBrief());
  $("share").onclick=()=>{const u=shareUrl(doc);out(u,"Ссылка на "+({kp:"КП",tz:"ТЗ",brief:"бриф"}[doc])+" скопирована.")};
- $("shareCalc").onclick=()=>{const u=location.origin+"/leadweb/kalkulyator/#c="+D.encState(LW.compact(true));out(u,"Ссылка на клиентский калькулятор с этим выбором скопирована.")}}
+ $("shareCalc").onclick=()=>{const u=location.origin+"/kalkulyator/#c="+D.encState(LW.compact(true));out(u,"Ссылка на клиентский калькулятор с этим выбором скопирована.")}}
 function out(u,okMsg){$("link").value=u;$("link").select();LW.copy(u).then(()=>m(okMsg),()=>m("Скопируйте ссылку из поля."))}
 const m=t=>{$("msg").textContent=t};
 function shareUrl(d){const base=location.origin+location.pathname,S=LW.S;if(d=="brief")return base+"#c="+D.encState(LW.compact(true));if(S.mid&&localStorage.getItem("kv_saved")==D.encState(S))return base+"#id="+S.mid+"&d="+d;return base+"#"+d+"="+D.encState(S)}
@@ -98,7 +98,7 @@ function txtKP(){const S=LW.S,L=LW.lines(),c=LW.totals(L),DD="-".repeat(64),pad=
 function txtTZ(){const DD="-".repeat(64);let s=`ТЕХНИЧЕСКОЕ ЗАДАНИЕ — vaybik.ru (${SITE})\n${DD}\n`;
  LW.tzData().forEach(([t,a,k],i)=>{s+=`\n${i+1}. ${t.toUpperCase()}\n`;if(k=="kv")a.forEach(([x,y])=>s+=`- ${x}: ${y}\n`);else if(k=="struct")a.forEach(([n,r])=>{s+=`${n}:\n`;r.forEach(([x,y],j)=>s+=`  ${j+1}. ${x} — ${y}\n`)});else if(k=="p")a.forEach(x=>s+=x+"\n");else a.forEach((x,j)=>s+=(k=="ol"?(j+1)+". ":"- ")+x+"\n")});
  return s+`\n${DD}\n`+CT()}
-function txtBrief(){const S=LW.S;let s=`БРИФ — vaybik.ru\n${"-".repeat(64)}\n`;LW.BRIEF.forEach(([k,l])=>{if((S.brief[k]||"").trim())s+=`${l}: ${S.brief[k].trim()}\n`});return s+"\n"+LW.summaryText(location.origin+"/leadweb/kalkulyator/#c="+D.encState(LW.compact(false)))+"\n"}
+function txtBrief(){const S=LW.S;let s=`БРИФ — vaybik.ru\n${"-".repeat(64)}\n`;LW.BRIEF.forEach(([k,l])=>{if((S.brief[k]||"").trim())s+=`${l}: ${S.brief[k].trim()}\n`});return s+"\n"+LW.summaryText(location.origin+"/kalkulyator/#c="+D.encState(LW.compact(false)))+"\n"}
 function jdl(name,o){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(o,null,1)],{type:"application/json"}));a.download=name;a.click()}
 function initIO(){let mode="";const f=$("impF"),num=x=>typeof x=="number"&&isFinite(x)&&x>=0;
  $("expS").onclick=()=>{const S=LW.S;jdl("leadweb-settings-"+iso(new Date())+".json",{kind:"leadweb-settings",v:2,rate:S.rate,tax:S.tax,hov:S.hov,custom:S.custom,slideEdits:EDITS})};

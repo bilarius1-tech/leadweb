@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex,nofollow">
 <title>Прототип студии vaybik.ru</title>
 <meta name="description" content="Черновой изометрический прототип студии vaybik.ru. На главной странице этой сцены нет.">
 <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAKklEQVR4nGMU4FJiIAUwkaSaLhpYkDkzvK9iVZSxVZuOThqRGhiHQVoCALgpA5mTOQ4/AAAAAElFTkSuQmCC">
@@ -46,11 +46,14 @@ h1{margin:6px 0 8px;font-size:clamp(28px,5vw,42px);line-height:1.1;letter-spacin
 @media(max-width:640px){.zones{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
+<link rel="preload" href="/fonts/manrope-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/unbounded-cyrillic-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/fonts.css">
 </head>
 <body>
 <a class="skip" href="#zones">К разделам</a>
 <header class="top">
-  <a class="logo" href="/leadweb/">Lead<b>.web</b></a>
+  <a class="logo" href="/">Lead<b>.web</b></a>
   <p class="eye">Черновик для просмотра</p>
   <h1>Студия vaybik.ru</h1>
   <p class="lead">Алексей и Игорь сами ходят по студии. Нажатие на любого открывает страницу «О нас». Рыжий кот спит на диване. На главной эта сцена стоит вторым блоком.</p>
@@ -74,15 +77,15 @@ h1{margin:6px 0 8px;font-size:clamp(28px,5vw,42px);line-height:1.1;letter-spacin
   <p class="note" id="motion-note"></p>
 </div>
 <nav class="zones" id="zones" aria-label="Разделы студии">
-  <a class="zone" href="/leadweb/automation.html" data-zone="alex"><b>Стол Алексея</b><span>Автоматизация с 1С</span></a>
-  <a class="zone" href="/leadweb/bitrix.html" data-zone="igor"><b>Стол Игоря</b><span>Сайт на 1С-Битрикс</span></a>
-  <a class="zone" href="/leadweb/o-nas/" data-zone="talk"><b>Зона общения</b><span>О нас</span></a>
-  <a class="zone" href="/leadweb/portfolio/" data-zone="portfolio"><b>Экран с работами</b><span>Портфолио</span></a>
+  <a class="zone" href="/avtomatizaciya-1c/" data-zone="alex"><b>Стол Алексея</b><span>Автоматизация с 1С</span></a>
+  <a class="zone" href="/bitrix/" data-zone="igor"><b>Стол Игоря</b><span>Сайт на 1С-Битрикс</span></a>
+  <a class="zone" href="/o-nas/" data-zone="talk"><b>Зона общения</b><span>О нас</span></a>
+  <a class="zone" href="/portfolio/" data-zone="portfolio"><b>Экран с работами</b><span>Портфолио</span></a>
 </nav>
 <noscript><p class="lead">Картинка комнаты включается скриптом. Ссылки на разделы выше остаются в разметке.</p></noscript>
 <footer class="foot">
   <p>Сцена, мебель и фигурки нарисованы кодом в этом прототипе. Чужие спрайты и логотипы не использовались. Движок Phaser 3.88.2 — лицензия MIT, файл <code>js/vendor/phaser.min.js</code>, текст лицензии рядом. Страница закрыта от индексации и не входит в меню сайта.</p>
-  <p><a href="/leadweb/">На главную</a></p>
+  <p><a href="/">На главную</a></p>
 </footer>
 <script src="js/vendor/phaser.min.js"></script>
 <script src="js/studio-preview.js"></script>

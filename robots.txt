@@ -43,4 +43,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://bilarius1-tech.github.io/leadweb/sitemap.xml
+Sitemap: https://vaybik.ru/sitemap.xml

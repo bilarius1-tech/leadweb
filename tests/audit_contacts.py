@@ -114,7 +114,7 @@ if "Калькулятор ничего не отправляет" not in home a
 nav = home.split('<nav class="nav"', 1)[1].split("</nav>", 1)[0]
 mob = home.split('Мобильное меню">', 1)[1].split("</nav>", 1)[0]
 for label, block in (("desktop", nav), ("mobile", mob)):
-    if "automation.html" not in block or "bitrix.html" not in block:
+    if "/avtomatizaciya-1c/" not in block or "/bitrix/" not in block:
         print(f"FAIL {label} menu missing service pages")
         ok = False
     if "kontakty" in block:

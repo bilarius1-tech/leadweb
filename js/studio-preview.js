@@ -33,7 +33,7 @@
       eye: "Рабочее место",
       title: "Алексей",
       text: "Страница про автоматизацию: процессы, связь сайта и CRM с 1С, отчёты для руководителя.",
-      href: "/leadweb/automation.html",
+      href: "/avtomatizaciya-1c/",
       link: "Открыть «Автоматизация с 1С»"
     },
     igor: {
@@ -41,7 +41,7 @@
       eye: "Рабочее место",
       title: "Игорь",
       text: "Страница про сайт на «1С-Битрикс: Управление сайтом». Это не Битрикс24.",
-      href: "/leadweb/bitrix.html",
+      href: "/bitrix/",
       link: "Открыть «Сайт на 1С-Битрикс»"
     },
     talk: {
@@ -49,7 +49,7 @@
       eye: "Зона общения",
       title: "Кто делает студию",
       text: "На странице «О нас» — Алексей и Игорь. Фигурки в сцене условные, это не портреты.",
-      href: "/leadweb/o-nas/",
+      href: "/o-nas/",
       link: "Открыть «О нас»"
     },
     portfolio: {
@@ -57,7 +57,7 @@
       eye: "Экран с работами",
       title: "Портфолио",
       text: "Кейсы и сайты, которые можно открыть и посмотреть.",
-      href: "/leadweb/portfolio/",
+      href: "/portfolio/",
       link: "Открыть портфолио"
     }
   };
@@ -1006,7 +1006,7 @@
     for (var i = actorHits.length - 1; i >= 0; i--) {
       var a = actorHits[i];
       if (x >= a.x && x <= a.x + a.w && y >= a.y && y <= a.y + a.h) {
-        return { type: "person", id: a.id, href: "/leadweb/o-nas/" };
+        return { type: "person", id: a.id, href: "/o-nas/" };
       }
     }
     var zone = hitTest(x, y);

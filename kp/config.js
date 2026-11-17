@@ -1,3 +1,3 @@
 // URL веб-приложения Google Apps Script (заканчивается на /exec).
-// Если задан здесь — работает у всех сразу. Поле «⚙ Таблица» во внутреннем режиме /leadweb/kp/ переопределяет его в этом браузере.
+// Если задан здесь — работает у всех сразу. Поле «⚙ Таблица» во внутреннем режиме /kp/ переопределяет его в этом браузере.
 const SHEETS_URL = "https://script.google.com/macros/s/AKfycbwYtuMawOCzZ-q6vAVgov-REuaXZHsVepFHcmUT_mKtZefxgpy3ZJfYmboFnHDEe8uW/exec";

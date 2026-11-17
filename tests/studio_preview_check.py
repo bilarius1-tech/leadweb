@@ -26,10 +26,10 @@ if page.count("<h1") != 1:
 if 'lang="ru"' not in page:
     fail("studio preview lang")
 for href in (
-    'href="/leadweb/automation.html"',
-    'href="/leadweb/bitrix.html"',
-    'href="/leadweb/o-nas/"',
-    'href="/leadweb/portfolio/"',
+    'href="/avtomatizaciya-1c/"',
+    'href="/bitrix/"',
+    'href="/o-nas/"',
+    'href="/portfolio/"',
 ):
     if href not in page:
         fail(f"missing {href}")
@@ -56,7 +56,7 @@ if "claude-office" in script or "PMF-game" in script:
     fail("prototype should not embed the reference projects")
 if "Выберите место" in page or "Выберите место" in script:
     fail("topic picker dialog is still present")
-for token in ("ALEX_PATH", "IGOR_PATH", "function cat", "/leadweb/o-nas/", "setVisible"):
+for token in ("ALEX_PATH", "IGOR_PATH", "function cat", "/o-nas/", "setVisible"):
     if token not in script:
         fail(f"studio script missing {token}")
 if 'id="studio"' not in home:
