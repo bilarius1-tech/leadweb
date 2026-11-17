@@ -42,5 +42,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /admin/
 
 Sitemap: https://vaybik.ru/sitemap.xml
