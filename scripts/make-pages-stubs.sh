@@ -19,13 +19,29 @@ out = Path(sys.argv[1])
 sm = Path("sitemap.xml").read_text(encoding="utf-8")
 paths = re.findall(r"<loc>https://vaybik\.ru(/[^<]*)</loc>", sm)
 extra = ["/automation.html", "/bitrix.html", "/kontakty/", "/kontakty", "/leadweb/", "/leadweb", "/leadweb/uslugi/"]
+# старый путь на Pages → канон на vaybik.ru
+CANON = {
+    "/automation.html": "/avtomatizaciya-1c/",
+    "/bitrix.html": "/bitrix/",
+    "/kontakty": "/o-nas/",
+    "/kontakty/": "/o-nas/",
+}
 seen = []
 for p in paths + extra:
     if p not in seen:
         seen.append(p)
 
+def canon_path(path: str) -> str:
+    if path in CANON:
+        return CANON[path]
+    if path.startswith("/leadweb/"):
+        return path[len("/leadweb") :] or "/"
+    if path == "/leadweb":
+        return "/"
+    return path
+
 def stub(path: str) -> None:
-    target = "https://vaybik.ru" + path
+    target = "https://vaybik.ru" + canon_path(path)
     if path == "/":
         file = out / "index.html"
     elif path.endswith(".html"):
@@ -68,6 +84,8 @@ for p in seen:
   var path = location.pathname || \"/\";
   if (path.indexOf(\"/leadweb/\") === 0) path = path.slice(\"/leadweb\".length) || \"/\";
   else if (path === \"/leadweb\") path = \"/\";
+  var map = {\"/automation.html\": \"/avtomatizaciya-1c/\", \"/bitrix.html\": \"/bitrix/\", \"/kontakty\": \"/o-nas/\", \"/kontakty/\": \"/o-nas/\"};
+  if (map[path]) path = map[path];
   var target = \"https://vaybik.ru\" + path + (location.search || \"\") + (location.hash || \"\");
   var link = document.createElement(\"link\");
   link.rel = \"canonical\";
